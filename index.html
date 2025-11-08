@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://nominatim.openstreetmap.org https://photon.komoot.io https://api.web3forms.com;">
+    
+    <!-- Primary Meta Tags -->
+    <title>San Ramon Area Scout Troop Finder | Compare Local Troops</title>
+    <meta name="title" content="San Ramon Area Scout Troop Finder | Compare Local Troops">
+    <meta name="description" content="Discover the perfect Boy Scout troop in San Ramon, CA! Compare troops side-by-side with detailed info on meeting times, Eagle Scout achievements, high adventure programs, and more. Make an informed decision for your Scout's journey.">
+    <meta name="keywords" content="Boy Scouts, San Ramon, Danville, Troop Comparison, BSA, Eagle Scout, Webelos, Cub Scouts, Scouts BSA, San Ramon Troops, Troop Finder">
+    <meta name="author" content="San Ramon Troop Finder">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sanramontroops.org/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sanramontroops.org/">
+    <meta property="og:title" content="San Ramon Area Scout Troop Finder | Compare Local Troops">
+    <meta property="og:description" content="Discover the perfect Boy Scout troop in San Ramon, CA! Compare troops side-by-side with detailed info on meeting times, Eagle Scout achievements, high adventure programs, and more. Make an informed decision for your Scout's journey.">
+    <meta property="og:image" content="https://sanramontroops.org/assets/images/san-ramon-troop-finder.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="San Ramon Troop Finder - Find the perfect Boy Scout troop">
+    <meta property="og:site_name" content="San Ramon Troop Finder">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://sanramontroops.org/">
+    <meta name="twitter:title" content="San Ramon Area Scout Troop Finder | Compare Local Troops">
+    <meta name="twitter:description" content="Discover the perfect Boy Scout troop in San Ramon, CA! Compare troops side-by-side with detailed info on meeting times, Eagle Scout achievements, high adventure programs, and more.">
+    <meta name="twitter:image" content="https://sanramontroops.org/assets/images/san-ramon-troop-finder.png">
+    <meta name="twitter:image:alt" content="San Ramon Troop Finder - Find the perfect Boy Scout troop">
+    
+    <!-- WhatsApp / Telegram -->
+    <meta property="og:image:type" content="image/png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚜️</text></svg>">
+    <link rel="apple-touch-icon" href="assets/images/san-ramon-troop-finder.png">
+    
+    <!-- Structured Data / JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "San Ramon Troop Finder",
+      "url": "https://sanramontroops.org/",
+      "description": "Discover the perfect Boy Scout troop in San Ramon, CA! Compare troops side-by-side with detailed info on meeting times, Eagle Scout achievements, high adventure programs, and more.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Parents, Scouts, Families"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "San Ramon",
+        "containedIn": {
+          "@type": "State",
+          "name": "California"
+        }
+      }
+    }
+    </script>
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="text-3xl">⚜️</div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-scout-blue dark:text-scout-gold">San Ramon Troop Finder</h1>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Find the perfect troop for your Scout</p>
+                    </div>
+                </div>
+                
+                <!-- Dark/Light Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+                    <svg id="theme-icon-light" class="w-6 h-6 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                    </svg>
+                    <svg id="theme-icon-dark" class="w-6 h-6 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Tab Navigation -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md mb-8">
+            <nav class="flex border-b border-gray-200 dark:border-gray-700">
+                <button id="tab-compare" class="tab-button active px-6 py-4 font-semibold text-scout-blue dark:text-scout-gold border-b-2 border-scout-blue dark:border-scout-gold transition-colors">
+                    📊 Compare Troops
+                </button>
+                <button id="tab-picker" class="tab-button px-6 py-4 font-semibold text-gray-600 dark:text-gray-400 hover:text-scout-blue dark:hover:text-scout-gold transition-colors">
+                    🎯 Find My Troop
+                </button>
+                <button id="tab-about" class="tab-button px-6 py-4 font-semibold text-gray-600 dark:text-gray-400 hover:text-scout-blue dark:hover:text-scout-gold transition-colors">
+                    ℹ️ About
+                </button>
+            </nav>
+        </div>
+
+        <!-- Tab 1: Compare Troops -->
+        <div id="content-compare" class="tab-content">
+            <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-8">
+                <div class="flex items-center justify-end mb-3 flex-wrap gap-3">
+                    <!-- Sort Dropdown (Mobile) -->
+                    <div id="mobile-sort-container" class="hidden md:hidden">
+                        <select id="mobile-sort" class="px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-scout-blue dark:focus:ring-scout-gold">
+                            <option value="">Sort by...</option>
+                            <option value="distance">📍 Distance</option>
+                            <option value="troop">🔢 Troop Number</option>
+                            <option value="meetingDay">📅 Meeting Day</option>
+                            <option value="size">👥 Troop Size</option>
+                            <option value="eagles">🦅 Eagle Scouts</option>
+                            <option value="pipHours">⏱️ PIP Hours</option>
+                            <option value="founded">📆 Founded Year</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Search Container -->
+                    <div class="flex items-center gap-2">
+                        <button id="search-toggle" class="search-toggle-btn p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Search troops" aria-label="Toggle search">
+                            🔍
+                        </button>
+                        <div id="search-bar-container" class="search-bar-container hidden">
+                            <input 
+                                type="text" 
+                                id="search-input" 
+                                class="search-input px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-scout-blue dark:focus:ring-scout-gold focus:border-transparent"
+                                placeholder="Search troops... (e.g., philmont tuesday)"
+                                aria-label="Search troops"
+                            />
+                            <button id="search-clear" class="search-clear-btn ml-1 px-2 py-1 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors" title="Clear search" aria-label="Clear search">
+                                ✕
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Helper Text -->
+                    <div class="text-xs text-gray-500 dark:text-gray-400 hidden md:flex items-center gap-3">
+                        <span>✏️ Hover over cells to suggest edits</span>
+                        <span class="text-gray-300 dark:text-gray-600">|</span>
+                        <span>↕️ Click headers to sort</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Table View -->
+                <div id="table-view" class="overflow-x-auto">
+                    <table id="comparison-table" class="comparison-table w-full border-collapse">
+                        <thead class="bg-scout-blue dark:bg-scout-blue/80 text-white">
+                            <tr>
+                                <th class="px-2 py-3 text-center w-8"></th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="troop">Troop #</th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="distance">
+                                    Distance<br/>
+                                    <button id="open-distance-modal" class="text-xs font-normal underline hover:text-scout-gold cursor-pointer">(from your home)</button>
+                                </th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="meetingDay">Meeting Day/Time</th>
+                                <th class="px-4 py-3 text-left">Location</th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="founded">Est. Year</th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="size">Troop Size</th>
+                                <th class="px-4 py-3 text-left">Chartered Org</th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="eagles">Eagle Scouts</th>
+                                <th class="px-4 py-3 text-left">Program Focus</th>
+                                <th class="px-4 py-3 text-left">Special Programs</th>
+                                <th class="px-4 py-3 text-left">High Adventure</th>
+                                <th class="sortable px-4 py-3 text-left" data-sort="pipHours">PIP Hours</th>
+                                <th class="px-4 py-3 text-left">Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Mobile Card View -->
+                <div id="card-view" class="hidden space-y-4">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <div class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                    <p>📅 Last updated: November 2025 | Data sourced from official troop websites and verified sources</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tab 2: Find My Troop -->
+        <div id="content-picker" class="tab-content hidden">
+            <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-bold text-scout-blue dark:text-scout-gold mb-4">🎯 Scout Preferences</h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Tell us about your Scout to get personalized recommendations</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Meeting Day Preference -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Preferred Meeting Days</label>
+                        <select id="pref-meeting-day" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                            <option value="">Any Day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Friday">Friday</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Max Distance -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Max Distance (miles)</label>
+                        <select id="pref-max-distance" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                            <option value="999">No Limit</option>
+                            <option value="5">Within 5 miles</option>
+                            <option value="10">Within 10 miles</option>
+                            <option value="15">Within 15 miles</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Activity Focus -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Activity Focus</label>
+                        <select id="pref-activity" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                            <option value="">Any Focus</option>
+                            <option value="outdoor">Outdoor & Adventure</option>
+                            <option value="eagle">Eagle Rank Achievement</option>
+                            <option value="balanced">Balanced Approach</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Troop Size Preference -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Troop Size Preference</label>
+                        <select id="pref-size" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                            <option value="">No Preference</option>
+                            <option value="small">Small (< 50 scouts)</option>
+                            <option value="medium">Medium (50-80 scouts)</option>
+                            <option value="large">Large (> 80 scouts)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Scout Experience Level -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Scout's Experience</label>
+                        <select id="pref-experience" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                            <option value="new">New Scout (bridging from Cub Scouts)</option>
+                            <option value="experienced">Experienced Scout</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Peer Pressure/Anxiety -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Scout's Personality</label>
+                        <select id="pref-personality" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700">
+                            <option value="">Any Environment</option>
+                            <option value="confident">Confident & Outgoing</option>
+                            <option value="cautious">Cautious & Thoughtful</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button 
+                    id="apply-filters" 
+                    class="mt-6 px-6 py-2 bg-scout-red hover:bg-red-700 text-white rounded-lg font-semibold transition-colors"
+                >
+                    Get Recommendations
+                </button>
+            </section>
+
+            <!-- Recommendations Section (Hidden by default) -->
+            <section id="recommendations" class="bg-gradient-to-r from-scout-gold/10 to-scout-blue/10 dark:from-scout-gold/20 dark:to-scout-blue/20 rounded-lg shadow-md p-6 mb-8 hidden">
+                <h2 class="text-xl font-bold text-scout-blue dark:text-scout-gold mb-4">✨ Recommended Troops for Your Scout</h2>
+                <div id="recommendations-content"></div>
+            </section>
+        </div>
+
+        <!-- Tab 3: About -->
+        <div id="content-about" class="tab-content hidden">
+            <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold text-scout-blue dark:text-scout-gold mb-4">ℹ️ About This Tool</h2>
+                <div class="prose dark:prose-invert max-w-none text-sm">
+                    <p class="mb-3">This comparison tool helps parents of Cub Scouts bridging to Boy Scouts (BSA/Scouts BSA) make informed decisions about which troop their Scout should join in the San Ramon, CA area.</p>
+                    <p class="mb-3">All data has been carefully researched from official troop websites, recruiting materials, and verified sources. We strive for accuracy, but troop information can change.</p>
+                    <p class="mb-3"><strong>📸 See something that needs updating?</strong> Click the edit icon (✏️) next to any cell in the table to submit corrections. Your feedback helps keep this information accurate for all families!</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">🔗 Sources: <a href="https://www.troopwebhost.org/Troop621SanRamon" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 621</a>, <a href="https://www.troop888.us/" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 888</a>, <a href="https://www.troop201srv.org/" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 201</a>, <a href="https://troop805.org/" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 805</a>, <a href="https://www.troop815.net/" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 815</a>, <a href="https://www.troopwebhost.org/Troop874SanRamon/" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 874</a>, <a href="https://www.troopwebhost.org/Troop1776SanRamon/" target="_blank" class="text-scout-blue dark:text-scout-gold underline">Troop 1776</a></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 mt-12 py-6 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                <p class="mb-2">🏕️ Built to help families find the right troop | Not affiliated with BSA | Data subject to change</p>
+                <p>For the most current information, please contact troops directly</p>
+            </div>
+            
+            <div class="text-xs text-gray-500 dark:text-gray-500">
+                <p>Made with ❤️ in San Ramon • Last updated: November 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Distance Calculator Modal -->
+    <div id="distance-modal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+            <h3 class="text-lg font-bold text-scout-blue dark:text-scout-gold mb-4">📍 Calculate Distance from Your Home</h3>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-2">Your Address</label>
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="user-address" 
+                        placeholder="e.g., 123 Main St, San Ramon, CA" 
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:ring-2 focus:ring-scout-blue dark:focus:ring-scout-gold focus:border-transparent"
+                        autocomplete="off"
+                    />
+                </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-2">💡 This will update the distance column in the comparison table</p>
+            </div>
+            
+            <div class="flex gap-3">
+                <button id="close-distance-modal" class="flex-1 px-4 py-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 rounded-lg font-semibold transition-colors">
+                    Cancel
+                </button>
+                <button id="calculate-distance" class="flex-1 px-4 py-2 bg-scout-blue hover:bg-blue-800 text-white rounded-lg font-semibold transition-colors">
+                    Calculate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+            <h3 class="text-lg font-bold text-scout-blue dark:text-scout-gold mb-4">✏️ Suggest Correction</h3>
+            
+            <!-- Field Picker (Mobile) -->
+            <div id="field-picker-view" class="hidden">
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Select the field you'd like to correct:</p>
+                <div class="field-picker" id="field-picker-list">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Correction Form -->
+            <div id="edit-form-view">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Troop</label>
+                    <input type="text" id="edit-troop-display" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700" disabled>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Field Being Corrected</label>
+                    <input type="text" id="edit-field-display" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700" disabled>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Current Value</label>
+                    <textarea id="edit-current" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700" rows="2" disabled></textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Suggested Correction *</label>
+                    <textarea id="edit-suggested" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700" rows="3" placeholder="Enter the correct information..."></textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Additional Notes (Optional)</label>
+                    <textarea id="edit-notes" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700" rows="3" placeholder="Any additional context or sources..."></textarea>
+                </div>
+                
+                <!-- Primary Action: GitHub -->
+                <div class="space-y-3">
+                    <button 
+                        type="button" 
+                        id="submit-github" 
+                        class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 dark:bg-gray-100 hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg font-semibold transition-colors"
+                    >
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                        </svg>
+                        Submit via GitHub
+                        <span class="text-xs bg-scout-gold text-gray-900 px-2 py-0.5 rounded-full">Recommended</span>
+                    </button>
+                    
+                    <div class="text-center">
+                        <button type="button" id="close-modal" class="text-sm text-gray-600 dark:text-gray-400 hover:text-scout-blue dark:hover:text-scout-gold underline">
+                            Cancel
+                        </button>
+                        <span class="mx-2 text-gray-400">•</span>
+                        <button type="button" id="use-email-fallback" class="text-sm text-gray-600 dark:text-gray-400 hover:text-scout-blue dark:hover:text-scout-gold underline">
+                            No GitHub account?
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Email Fallback Form (Hidden by default) -->
+            <form id="edit-form-email" class="hidden" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="f2ef940a-58b7-4f2e-86b4-bdcb8da94b3b">
+                <input type="hidden" name="subject" value="Troop Comparison - Correction Submitted">
+                <input type="hidden" id="email-troop" name="Troop">
+                <input type="hidden" id="email-field" name="Field">
+                <input type="hidden" id="email-current" name="Current Value">
+                <input type="hidden" id="email-suggested" name="Suggested Correction">
+                <input type="hidden" id="email-notes" name="Additional Notes">
+                
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        📧 Submitting via email. We recommend using GitHub for better tracking and transparency.
+                    </p>
+                    <label class="block text-sm font-medium mb-2">Your Email (Optional)</label>
+                    <input type="email" name="email" id="email-address" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700" placeholder="your@email.com">
+                </div>
+                
+                <div class="flex gap-3">
+                    <button type="button" id="back-to-github" class="flex-1 px-4 py-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 rounded-lg font-semibold transition-colors">
+                        Back
+                    </button>
+                    <button type="submit" class="flex-1 px-4 py-2 bg-scout-blue hover:bg-blue-800 text-white rounded-lg font-semibold transition-colors">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

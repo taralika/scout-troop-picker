@@ -1,0 +1,14 @@
+{
+  "name": "scouts-troop-picker",
+  "version": "1.0.0",
+  "description": "San Ramon Area Scout Troop Finder",
+  "scripts": {
+    "build:css": "tailwindcss -i input.css -o styles.css --minify",
+    "watch:css": "tailwindcss -i input.css -o styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
+
+

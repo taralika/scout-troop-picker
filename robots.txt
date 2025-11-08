@@ -1,0 +1,11 @@
+# robots.txt for San Ramon Troop Finder
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sanramontroops.org/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
+

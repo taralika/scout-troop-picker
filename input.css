@@ -1,0 +1,494 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Table styling */
+.comparison-table {
+    font-size: 0.875rem;
+}
+
+.comparison-table th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Edit icon styling */
+.edit-icon {
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+td:hover > .edit-icon,
+.detail-label:hover > .edit-icon {
+    opacity: 1;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+    backdrop-filter: blur(4px);
+}
+
+/* Sortable header */
+.sortable {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.sortable:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .sortable:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Sort arrow indicator */
+.sort-arrow {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFC72C;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.dark .sort-arrow {
+    color: #FFC72C;
+}
+
+/* Badge styling */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Recommendation card */
+.recommendation-card {
+    border-left: 4px solid #FFC72C;
+}
+
+/* Spinner animation */
+.spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tab styling */
+.tab-button {
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+    color: #003F87;
+    border-bottom-color: #003F87;
+}
+
+.dark .tab-button.active {
+    color: #FFC72C;
+    border-bottom-color: #FFC72C;
+}
+
+/* Expandable row styling */
+.expand-icon {
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    width: 1.5em;
+    text-align: center;
+}
+
+.detail-row {
+    display: none;
+}
+
+.detail-row.expanded {
+    display: table-row;
+}
+
+.detail-content {
+    background-color: #f9fafb;
+    border-left: 4px solid #FFC72C;
+}
+
+.dark .detail-content {
+    background-color: #1f2937;
+}
+
+.detail-section {
+    margin-bottom: 1rem;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #003F87;
+    margin-bottom: 0.25rem;
+}
+
+.dark .detail-label {
+    color: #FFC72C;
+}
+
+/* Search bar styling */
+.search-toggle-btn {
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+}
+
+.search-bar-container.visible {
+    opacity: 1;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 250px;
+}
+
+.search-clear-btn {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Highlight styling */
+mark {
+    background-color: #FFC72C;
+    color: #000;
+    padding: 0 2px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+.dark mark {
+    background-color: #E3B778;
+    color: #000;
+}
+
+/* No results message */
+.no-results-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.dark .no-results-message {
+    color: #9ca3af;
+}
+
+/* Mobile Card Layout */
+.troop-card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-left: 4px solid #FFC72C;
+}
+
+.dark .troop-card {
+    background: #1f2937;
+}
+
+.troop-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -1rem -1rem 0.75rem -1rem;
+    padding: 1rem 1rem 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.dark .troop-card-header {
+    border-bottom-color: #374151;
+    background: rgba(31, 41, 55, 0.85);
+}
+
+.troop-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #003F87;
+    flex-grow: 1;
+}
+
+.dark .troop-card-title {
+    color: #FFC72C;
+}
+
+.troop-card-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.troop-card-label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.dark .troop-card-label {
+    color: #9ca3af;
+}
+
+.troop-card-value {
+    flex-grow: 1;
+    text-align: right;
+    color: #1f2937;
+}
+
+.dark .troop-card-value {
+    color: #e5e7eb;
+}
+
+/* Distance field clickable/editable */
+.distance-clickable {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: #9ca3af;
+    transition: all 0.2s;
+}
+
+.distance-clickable:hover {
+    text-decoration-style: solid;
+    text-decoration-color: #003F87;
+    color: #003F87;
+}
+
+.dark .distance-clickable:hover {
+    text-decoration-color: #FFC72C;
+    color: #FFC72C;
+}
+
+/* Set Home button in distance field */
+.set-home-btn {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background: linear-gradient(135deg, #003F87 0%, #004999 100%);
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.813rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark .set-home-btn {
+    background: linear-gradient(135deg, #FFC72C 0%, #E3B778 100%);
+    color: #1f2937;
+}
+
+.set-home-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.troop-card-edit {
+    width: 100%;
+    padding: 0.625rem;
+    margin-top: 0.75rem;
+    background: transparent;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.813rem;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dark .troop-card-edit {
+    border-color: #4b5563;
+    color: #9ca3af;
+}
+
+.troop-card-edit:hover {
+    border-color: #003F87;
+    color: #003F87;
+    background: #f9fafb;
+}
+
+.dark .troop-card-edit:hover {
+    border-color: #FFC72C;
+    color: #FFC72C;
+    background: #1f2937;
+}
+
+.troop-card-expand {
+    width: 100%;
+    padding: 0.875rem;
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, #003F87 0%, #004999 100%);
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .troop-card-expand {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+    color: #FFC72C;
+}
+
+.troop-card-expand:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #002d66 0%, #003d7a 100%);
+}
+
+.dark .troop-card-expand:hover {
+    background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+}
+
+.troop-card-details {
+    display: none;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.dark .troop-card-details {
+    border-top-color: #374151;
+}
+
+.troop-card-details.expanded {
+    display: block;
+}
+
+/* Field Picker (for mobile edit) */
+.field-picker {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.field-picker-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dark .field-picker-item {
+    border-bottom-color: #374151;
+}
+
+.field-picker-item:hover {
+    background: #f3f4f6;
+}
+
+.dark .field-picker-item:hover {
+    background: #374151;
+}
+
+.field-picker-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsive visibility */
+@media (max-width: 767px) {
+    #table-view {
+        display: none !important;
+    }
+    
+    #card-view {
+        display: block !important;
+    }
+    
+    #mobile-sort-container {
+        display: block !important;
+    }
+    
+    /* Position sticky headers below the page header on mobile */
+    .troop-card-header {
+        top: 75px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .dark .troop-card-header {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@media (min-width: 768px) {
+    #table-view {
+        display: block !important;
+    }
+    
+    #card-view {
+        display: none !important;
+    }
+    
+    /* Disable sticky effect on desktop */
+    .troop-card-header {
+        position: relative !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+
