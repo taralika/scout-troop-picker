@@ -350,6 +350,16 @@
         </div>
     </div>
 
+    <!-- Flyer Lightbox Modal -->
+    <div id="flyer-lightbox" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/90 flex items-center justify-center p-8">
+        <div class="relative flex items-center justify-center" style="max-width: 100%; max-height: 100%;">
+            <button id="close-flyer-lightbox" class="absolute -top-12 right-0 text-white text-4xl hover:text-gray-300 z-10" aria-label="Close flyer">
+                ✕
+            </button>
+            <img id="flyer-lightbox-image" src="" alt="Troop Flyer" style="max-width: 95vw; max-height: 92vh; width: auto; height: auto; object-fit: contain;" class="rounded-lg shadow-2xl">
+        </div>
+    </div>
+
     <!-- Edit Modal -->
     <div id="edit-modal" class="hidden fixed inset-0 z-50 modal-backdrop bg-black/50 flex items-center justify-center p-4">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">

@@ -239,6 +239,29 @@ function closeDistanceModal() {
     document.getElementById('distance-modal').classList.add('hidden');
 }
 
+// Flyer Lightbox Functions
+function openFlyerLightbox(imagePath) {
+    const lightbox = document.getElementById('flyer-lightbox');
+    const image = document.getElementById('flyer-lightbox-image');
+    image.src = imagePath;
+    lightbox.classList.remove('hidden');
+    // Add keyboard listener for ESC key
+    document.addEventListener('keydown', handleFlyerLightboxEscape);
+}
+
+function closeFlyerLightbox() {
+    const lightbox = document.getElementById('flyer-lightbox');
+    lightbox.classList.add('hidden');
+    // Remove keyboard listener
+    document.removeEventListener('keydown', handleFlyerLightboxEscape);
+}
+
+function handleFlyerLightboxEscape(e) {
+    if (e.key === 'Escape') {
+        closeFlyerLightbox();
+    }
+}
+
 // Event Listeners
 function setupEventListeners() {
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
@@ -254,6 +277,14 @@ function setupEventListeners() {
     // Distance modal
     document.getElementById('open-distance-modal').addEventListener('click', openDistanceModal);
     document.getElementById('close-distance-modal').addEventListener('click', closeDistanceModal);
+    
+    // Flyer lightbox
+    document.getElementById('close-flyer-lightbox').addEventListener('click', closeFlyerLightbox);
+    document.getElementById('flyer-lightbox').addEventListener('click', (e) => {
+        if (e.target.id === 'flyer-lightbox') {
+            closeFlyerLightbox();
+        }
+    });
     
     // Sort headers
     document.querySelectorAll('.sortable').forEach(header => {
@@ -454,6 +485,19 @@ function getPIPHoursDisplay(hours) {
 function createDetailContent(troop, highlightTerms = []) {
     const sections = [];
     const highlight = (text) => highlightTerms.length > 0 ? highlightMatches(text, highlightTerms) : text;
+    
+    // Flyer Preview (if available)
+    if (troop.flyerImage) {
+        sections.push(`
+            <div class="detail-section">
+                <div class="detail-label">📄 Recruiting Flyer</div>
+                <div class="cursor-pointer hover:opacity-90 transition-opacity" onclick="openFlyerLightbox('${troop.flyerImage}')">
+                    <img src="${troop.flyerImage}" alt="Troop ${troop.troop} Flyer" style="max-width: 180px; width: auto; height: auto;" class="rounded-lg shadow-md hover:shadow-lg border-2 border-gray-200 dark:border-gray-600">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5">↗ Click to view full size</p>
+                </div>
+            </div>
+        `);
+    }
     
     // Philosophy/Approach
     if (troop.philosophyApproach) {
@@ -786,6 +830,7 @@ function renderTableView(troops = troopData, highlightTerms = []) {
             </td>
             <td class="px-4 py-3 font-semibold text-scout-blue dark:text-scout-gold">
                 <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${highlight(troop.troop)}</a>
+                ${troop.flyerImage ? `<span class="ml-2 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
             </td>
             <td class="px-4 py-3">
                 <span class="distance-value">${troop.distance !== null ? troop.distance.toFixed(1) + ' mi' : '—'}</span>
@@ -892,6 +937,7 @@ function renderCardView(troops = troopData, highlightTerms = []) {
             <div class="troop-card-header">
                 <div class="troop-card-title">
                     🏕️ <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${highlight(troop.troop)}</a>
+                    ${troop.flyerImage ? `<span class="ml-2 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
                 </div>
             </div>
             
@@ -1836,4 +1882,5 @@ function capitalizeFirst(str) {
 
 // Make functions globally accessible for onclick handlers
 window.openEditModal = openEditModal;
+window.openFlyerLightbox = openFlyerLightbox;
 
