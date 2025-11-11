@@ -1643,6 +1643,7 @@ function showRecommendations(scoredTroops) {
                         <div>
                             <h3 class="text-lg font-bold text-scout-blue dark:text-scout-gold">
                                 <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${troop.troop}</a>
+                                ${troop.flyerImage ? `<span class="ml-2 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
                             </h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">${troop.location}, ${troop.city}</p>
                         </div>
