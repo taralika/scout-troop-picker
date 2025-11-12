@@ -19,7 +19,7 @@ A modern, responsive web application to help parents of Cub Scouts transitioning
 1. Clone or download this repository
 2. Install dependencies: `npm install`
 3. Build CSS: `npm run build:css`
-4. Open `index.html` in any modern web browser
+4. Start local server: `./start-server.sh`
 
 ### Option 2: Deploy to Cloudflare Pages
 

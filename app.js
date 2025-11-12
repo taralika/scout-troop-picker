@@ -851,15 +851,15 @@ function renderTableView(troops = troopData, highlightTerms = []) {
             </td>
             <td class="px-4 py-3">
                 ${highlight(typeof troop.size === 'number' ? troop.size + ' scouts' : troop.size)}
-                <span class="edit-icon ml-2" onclick="openEditModal('${troop.troop}', 'Troop Size', '${escapeForOnclick(troop.size)}')">✏️</span>
+                <span class="edit-icon ml-2" onclick="openEditModal('${troop.troop}', 'Current Size', '${escapeForOnclick(troop.size)}')">✏️</span>
             </td>
             <td class="px-4 py-3">
                 ${highlight(troop.charteredOrg)}
                 <span class="edit-icon ml-2" onclick="openEditModal('${troop.troop}', 'Chartered Organization', '${escapeForOnclick(troop.charteredOrg)}')">✏️</span>
             </td>
             <td class="px-4 py-3">
-                <div class="font-semibold text-scout-gold">${highlight(troop.eagleCount + ' scouts')}</div>
-                <span class="edit-icon ml-2" onclick="openEditModal('${troop.troop}', 'Eagle Scouts', '${escapeForOnclick(troop.eagles)}')">✏️</span>
+                ${highlight(typeof troop.eagleCount === 'number' ? troop.eagleCount + ' eagles' : troop.eagleCount)}
+                <span class="edit-icon ml-2" onclick="openEditModal('${troop.troop}', 'Eagles ToDate', '${escapeForOnclick(troop.eagles)}')">✏️</span>
             </td>
             <td class="px-4 py-3 max-w-xs">
                 ${highlight(troop.programFocus)}
@@ -973,7 +973,7 @@ function renderCardView(troops = troopData, highlightTerms = []) {
             </div>
             
             <div class="troop-card-field">
-                <span class="troop-card-label">👥 Troop Size</span>
+                <span class="troop-card-label">👥 Current Size</span>
                 <span class="troop-card-value">
                     ${highlight(typeof troop.size === 'number' ? troop.size + ' scouts' : troop.size)}
                 </span>
@@ -987,9 +987,9 @@ function renderCardView(troops = troopData, highlightTerms = []) {
             </div>
             
             <div class="troop-card-field">
-                <span class="troop-card-label">🦅 Eagle Scouts</span>
+                <span class="troop-card-label">🦅 Eagles ToDate</span>
                 <span class="troop-card-value">
-                    ${highlight(troop.eagleCount + ' scouts')}
+                    ${highlight(troop.eagleCount + ' eagles')}
                 </span>
             </div>
             
@@ -1693,9 +1693,9 @@ function openCardEditModal(troopNumber, troopIndex) {
         { name: 'Meeting Day/Time', value: `${troop.meetingDay || ''} ${troop.meetingTime || ''}`.trim() },
         { name: 'Meeting Location', value: `${troop.location || ''}, ${troop.address || ''}`.trim() },
         { name: 'Founded Year', value: troop.founded || 'Unknown' },
-        { name: 'Troop Size', value: troop.size },
+        { name: 'Current Size', value: troop.size },
         { name: 'Chartered Organization', value: troop.charteredOrg },
-        { name: 'Eagle Scouts', value: troop.eagles },
+        { name: 'Eagles ToDate', value: troop.eagles },
         { name: 'Program Focus', value: troop.programFocus },
         { name: 'Special Programs', value: getSpecialProgramsList(troop) },
         { name: 'High Adventure', value: troop.highAdventureShort || troop.highAdventure || '' },
