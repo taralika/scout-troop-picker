@@ -486,14 +486,33 @@ function createDetailContent(troop, highlightTerms = []) {
     const sections = [];
     const highlight = (text) => highlightTerms.length > 0 ? highlightMatches(text, highlightTerms) : text;
     
-    // Flyer Preview (if available)
-    if (troop.flyerImage) {
-        sections.push(`
-            <div class="detail-section">
+    // Flyer and Presentation Preview (if available)
+    if (troop.flyerImage || troop.presentationPdf) {
+        const flyerHtml = troop.flyerImage ? `
+            <div>
                 <div class="detail-label">📄 Recruiting Flyer</div>
                 <div class="cursor-pointer hover:opacity-90 transition-opacity" onclick="openFlyerLightbox('${troop.flyerImage}')">
                     <img src="${troop.flyerImage}" alt="Troop ${troop.troop} Flyer" style="max-width: 180px; width: auto; height: auto;" class="rounded-lg shadow-md hover:shadow-lg border-2 border-gray-200 dark:border-gray-600">
                     <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5">↗ Click to view full size</p>
+                </div>
+            </div>
+        ` : '';
+        
+        const presentationHtml = troop.presentationPdf ? `
+            <div>
+                <div class="detail-label">🎬 Open House Presentation</div>
+                <div class="cursor-pointer hover:opacity-90 transition-opacity" onclick="window.open('${troop.presentationPdf}', '_blank')">
+                    <img src="${troop.presentationThumb || troop.presentationPdf}" alt="Troop ${troop.troop} Presentation" style="max-width: 180px; width: auto; height: auto;" class="rounded-lg shadow-md hover:shadow-lg border-2 border-gray-200 dark:border-gray-600">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5">↗ Click to open PDF</p>
+                </div>
+            </div>
+        ` : '';
+        
+        sections.push(`
+            <div class="detail-section">
+                <div class="flex flex-wrap gap-4 md:gap-10">
+                    ${flyerHtml}
+                    ${presentationHtml}
                 </div>
             </div>
         `);
@@ -828,9 +847,8 @@ function renderTableView(troops = troopData, highlightTerms = []) {
             <td class="px-2 py-3 text-center">
                 <span class="expand-icon text-xl cursor-pointer" data-index="${index}" onclick="toggleExpand(${index})">▶</span>
             </td>
-            <td class="px-4 py-3 font-semibold text-scout-blue dark:text-scout-gold">
-                <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${highlight(troop.troop)}</a>
-                ${troop.flyerImage ? `<span class="ml-2 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
+            <td class="px-4 py-3 font-semibold text-scout-blue dark:text-scout-gold whitespace-nowrap">
+                <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${highlight(troop.troop)}</a>${troop.flyerImage ? `<span class="cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}${troop.presentationPdf ? `<span class="ml-1 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="window.open('${troop.presentationPdf}', '_blank')" title="View open house presentation">🎬</span>` : ''}
             </td>
             <td class="px-4 py-3">
                 <span class="distance-value">${troop.distance !== null ? troop.distance.toFixed(1) + ' mi' : '—'}</span>
@@ -937,7 +955,8 @@ function renderCardView(troops = troopData, highlightTerms = []) {
             <div class="troop-card-header">
                 <div class="troop-card-title">
                     🏕️ <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${highlight(troop.troop)}</a>
-                    ${troop.flyerImage ? `<span class="ml-2 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
+                    ${troop.flyerImage ? `<span class="cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
+                    ${troop.presentationPdf ? `<span class="ml-1 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="window.open('${troop.presentationPdf}', '_blank')" title="View open house presentation">🎬</span>` : ''}
                 </div>
             </div>
             
@@ -1643,7 +1662,8 @@ function showRecommendations(scoredTroops) {
                         <div>
                             <h3 class="text-lg font-bold text-scout-blue dark:text-scout-gold">
                                 <a href="${troop.website}" target="_blank" class="hover:underline">Troop ${troop.troop}</a>
-                                ${troop.flyerImage ? `<span class="ml-2 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
+                                ${troop.flyerImage ? `<span class="cursor-pointer hover:scale-110 transition-transform inline-block" onclick="openFlyerLightbox('${troop.flyerImage}')" title="View recruiting flyer">📄</span>` : ''}
+                                ${troop.presentationPdf ? `<span class="ml-1 cursor-pointer hover:scale-110 transition-transform inline-block" onclick="window.open('${troop.presentationPdf}', '_blank')" title="View open house presentation">🎬</span>` : ''}
                             </h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">${troop.location}, ${troop.city}</p>
                         </div>
